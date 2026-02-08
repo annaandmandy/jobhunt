@@ -1,0 +1,177 @@
+.review-edit-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background: #121212;
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+.tabs-header {
+    display: flex;
+    border-bottom: 1px solid #333;
+    padding: 10px 16px;
+    gap: 12px;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ccc;
+}
+
+.tab-btn.active {
+    background: rgba(100, 108, 255, 0.1);
+    color: #646cff;
+}
+
+.tab-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.tab-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+}
+
+.input-pane,
+.edit-pane {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+}
+
+h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.jd-input,
+.editor-textarea {
+    width: 100%;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 12px;
+    color: #eee;
+    font-family: 'Inter', sans-serif;
+    /* Monospace for editor? maybe for resume markdown */
+    font-size: 0.95rem;
+    resize: none;
+    transition: border-color 0.2s;
+    flex: 1;
+}
+
+.editor-textarea {
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.jd-input:focus,
+.editor-textarea:focus {
+    outline: none;
+    border-color: #646cff;
+}
+
+.generate-btn {
+    background: linear-gradient(135deg, #646cff 0%, #904e95 100%);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.1s;
+    box-shadow: 0 4px 12px rgba(100, 108, 255, 0.3);
+}
+
+.generate-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(100, 108, 255, 0.4);
+}
+
+.generate-btn:active {
+    transform: translateY(1px);
+}
+
+.generate-btn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.edit-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.pane-switcher {
+    display: flex;
+    background: #1e1e1e;
+    padding: 4px;
+    border-radius: 8px;
+    gap: 4px;
+}
+
+.pane-switcher button {
+    background: transparent;
+    border: none;
+    color: #888;
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+}
+
+.pane-switcher button.active {
+    background: #333;
+    color: #fff;
+    font-weight: 500;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.action-buttons button {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    color: #ccc;
+    padding: 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-buttons button:hover {
+    border-color: #646cff;
+    color: #fff;
+}

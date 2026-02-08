@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pydantic
+xhtml2pdf
+jinja2
+python-multipart
+langgraph
+langchain
+langchain-openai
+markdown
+python-dotenv

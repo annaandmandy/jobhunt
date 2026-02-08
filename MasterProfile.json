@@ -1,0 +1,172 @@
+{
+    "contact": {
+        "name": "Hsiang Yu Huang (Anna)",
+        "email": "huanganna1004@gmail.com",
+        "phone": "6173195044",
+        "location": "Boston, MA",
+        "linkedin": "linkedin.com/in/hsiangyuhuang/",
+        "github": "github.com/annaandmandy",
+        "website": "https://www.hsiangyuhuang.com/"
+    },
+    "education": [
+        {
+            "institution": "Boston University",
+            "degree": "M.S. in Data Science",
+            "dates": "2024 - 2026",
+            "gpa": "3.6",
+            "honors": [
+                "DS+X Hackathon Best Overall",
+                "CivilHack Hackathon Dashboard Prize"
+            ]
+        },
+        {
+            "institution": "National Taiwan University of Science and Technology",
+            "degree": "B.B.A in Industrial Management & Finance, Minor in Computer Science",
+            "dates": "2019 - 2023",
+            "gpa": "3.8"
+        }
+    ],
+    "work_experience": [
+        {
+            "company": "Finz",
+            "role": "AI Engineering Intern",
+            "location": "Remote/Boston",
+            "dates": "Dec 2025 - Jan 2026",
+            "achievements": [
+                "Engineered a production-grade ETL pipeline using FastAPI and Kafka to normalize financial data from Stripe and Quickbook, enabling real-time cashflow analysis for AI-driven insights.",
+                "Improved LLM intent routing accuracy by ~20%, reducing fallback responses and increasing successful query resolution in a customer-facing financial assistant.",
+                "Orchestrated containerized backend services using Docker and GitHub Actions on AWS EC2, ensuring deployment consistency across environments."
+            ]
+        },
+        {
+            "company": "BU BIT Lab",
+            "role": "Research Assistant",
+            "location": "Boston, MA",
+            "dates": "Sep 2025 - Jan 2026",
+            "achievements": [
+                "Architected a context-aware memory system using LangGraph that combines short-term conversational history with vector-based retrieval to prevent context drift in long-running AI sessions.",
+                "Developed an agentic query routing framework to classify user intent and orchestrate specialized prompt chains, integrating external tool-calling for real-time data grounding.",
+                "Designed a high-granularity MongoDB logging schema to track latency, token usage, and interaction signals, facilitating systematic LLM evaluation and performance tuning."
+            ]
+        },
+        {
+            "company": "Citale (BU Spark! Launch Lab)",
+            "role": "Full Stack Developer",
+            "location": "Boston, MA",
+            "dates": "Sep 2024 - May 2025",
+            "achievements": [
+                "Developed and launched core social features including real-time messaging and event-based maps using Next.js and Supabase, supporting successful beta testing with local businesses.",
+                "Optimized PostgreSQL database performance through normalized schema design and strict indexing, ensuring data integrity for scalable user interactions."
+            ]
+        }
+    ],
+    "technical_projects": [
+        {
+            "title": "Hierarchical Multi-Agent Novel Generator",
+            "tech_stack": [
+                "LangGraph",
+                "Cloudflare Workers",
+                "Supabase",
+                "OpenAI API"
+            ],
+            "highlights": [
+                "Designed a 3-tier agent hierarchy (Director, Planner, Writer) to generate coherent 10,000+ word narratives.",
+                "Solved context window limitations by implementing recursive self-correction loops and persistent state management via Supabase.",
+                "Deployed as a serverless application on Cloudflare Workers, maintaining narrative consistency across 15+ chapters."
+            ]
+        },
+        {
+            "title": "C++20 Relational Database Kernel",
+            "tech_stack": [
+                "C++20",
+                "GDB",
+                "Memory Management",
+                "Systems Programming"
+            ],
+            "highlights": [
+                "Developed a high-performance storage engine featuring an LRU buffer pool manager with O(1) eviction logic.",
+                "Implemented a B+ Tree index from scratch supporting concurrent splits and O(log n) search complexity.",
+                "Engineered a bitmap-based Heap File system achieving 96% space utilization for fixed-width records."
+            ]
+        },
+        {
+            "title": "Distributed Real-time Game Infrastructure",
+            "tech_stack": [
+                "Apache Kafka",
+                "Redis",
+                "WebSockets",
+                "Nginx",
+                "Docker"
+            ],
+            "highlights": [
+                "Orchestrated an event-driven backend using Kafka for state transition logging and Redis for low-latency session management.",
+                "Implemented Nginx reverse proxy to load balance WebSocket traffic across distributed Node.js instances."
+            ]
+        },
+        {
+            "title": "NVIDIA Stock PriceSentiment Data Pipeline",
+            "category": "Data Engineering",
+            "tech_stack": [
+                "Azure Synapse",
+                "Azure Functions",
+                "Medallion Architecture",
+                "Python"
+            ],
+            "highlights": [
+                "Built an automated Medallion architecture pipeline to ingest and process 500+ daily tweets and stock data for sentiment analysis.",
+                "Automated daily ETL tasks using Azure Function Apps, transforming raw social discourse into structured financial datasets for Power BI."
+            ]
+        },
+        {
+            "title": "Hybrid Demand Forecasting Pipeline (Research)",
+            "tech_stack": [
+                "XGBoost",
+                "ARIMA",
+                "Scikit-learn",
+                "Python"
+            ],
+            "highlights": [
+                "Achieved a 65.1% improvement in R² accuracy (8.3% to 73.4%) for GPU component demand forecasting at NTUST AI Lab.",
+                "Engineered a rolling-window adaptive model combining time-series analysis with machine learning."
+            ]
+        }
+    ],
+    "honors_and_awards": [
+        {
+            "award": "Best Overall - DS+X Hackathon",
+            "project": "RhettSearch",
+            "description": "Gamified academic research engine using semantic search and AI-generated paper summaries."
+        },
+        {
+            "award": "Dashboard Prize - CivilHack",
+            "project": "U.S. Virtual Garden",
+            "description": "Visualized U.S. Herbaria data using Groq API for dynamic botanical descriptions and Looker Studio."
+        }
+    ],
+    "skills": {
+        "languages": [
+            "Python",
+            "C++20",
+            "TypeScript",
+            "JavaScript",
+            "SQL"
+        ],
+        "frameworks": [
+            "FastAPI",
+            "React",
+            "Next.js",
+            "LangChain",
+            "LangGraph",
+            "PyTorch"
+        ],
+        "cloud_tools": [
+            "AWS (EC2, S3, Lambda)",
+            "Azure (Synapse, Functions)",
+            "Docker",
+            "Kafka",
+            "Redis",
+            "PostgreSQL",
+            "MongoDB"
+        ]
+    }
+}

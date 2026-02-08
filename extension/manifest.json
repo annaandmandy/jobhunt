@@ -1,0 +1,23 @@
+{
+    "manifest_version": 3,
+    "name": "AI Career Suite",
+    "version": "1.0.0",
+    "description": "AI-powered resume and cover letter generator",
+    "permissions": [
+        "sidePanel",
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": [
+        "http://localhost:8000/*"
+    ],
+    "side_panel": {
+        "default_path": "index.html"
+    },
+    "action": {
+        "default_title": "Open AI Career Suite"
+    },
+    "background": {
+        "service_worker": "service-worker.js"
+    }
+}

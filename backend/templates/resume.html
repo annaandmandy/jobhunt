@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ profile.contact.name }} - Resume</title>
+    <style>
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+        body {
+            font-family: "Helvetica", "Arial", sans-serif;
+            font-size: 10pt;
+            line-height: 1.3;
+            color: #000;
+        }
+        h1 {
+            font-size: 18pt;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 2px;
+        }
+        .contact-info {
+            text-align: center;
+            font-size: 9pt;
+            margin-bottom: 12px;
+        }
+        h2 {
+            font-size: 11pt;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000;
+            margin-top: 10px;
+            margin-bottom: 4px;
+            padding-bottom: 2px;
+        }
+        .section {
+            margin-bottom: 8px;
+        }
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+        .item-sub {
+            display: flex;
+            justify-content: space-between;
+            font-style: italic;
+        }
+        ul {
+            margin-top: 2px;
+            margin-bottom: 4px;
+            padding-left: 16px;
+        }
+        li {
+            margin-bottom: 1px;
+        }
+        .skills-list {
+            margin-top: 2px;
+        }
+        .right-align {
+            text-align: right;
+            float: right;
+        }
+        .left-align {
+            float: left;
+            font-weight: bold;
+        }
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>{{ profile.contact.name }}</h1>
+    <div class="contact-info">
+        {{ profile.contact.phone }} | {{ profile.contact.email }} | {{ profile.contact.location }} <br/>
+        <a href="https://{{ profile.contact.linkedin }}">{{ profile.contact.linkedin }}</a> | <a href="https://{{ profile.contact.github }}">{{ profile.contact.github }}</a> | <a href="{{ profile.contact.website }}">{{ profile.contact.website }}</a>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section">
+        <h2>Education</h2>
+        {% for edu in profile.education %}
+        <div>
+            <div class="left-align">{{ edu.institution }}</div>
+            <div class="right-align">{{ edu.dates }}</div>
+            <div class="clear"></div>
+            
+            <div class="left-align" style="font-weight: normal; font-style: italic;">{{ edu.degree }}</div>
+            <div class="right-align">GPA: {{ edu.gpa }}</div>
+            <div class="clear"></div>
+
+            {% if edu.honors %}
+            <div style="font-size: 9pt; margin-top: 2px;">
+                Expected Graduation: {{ edu.dates }}<br/>
+                Awards: {{ edu.honors | join(', ') }}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- TECHNICAL SKILLS -->
+    <div class="section">
+        <h2>Technical Skills</h2>
+        <div class="skills-list">
+            <strong>Languages:</strong> {{ profile.skills.languages | join(', ') }}<br/>
+            <strong>Frameworks:</strong> {{ profile.skills.frameworks | join(', ') }}<br/>
+            <strong>Cloud/Tools:</strong> {{ profile.skills.cloud_tools | join(', ') }}
+        </div>
+    </div>
+
+    <!-- WORK EXPERIENCE -->
+    <div class="section">
+        <h2>Work Experience</h2>
+        {% for job in profile.work_experience %}
+        <div>
+            <div class="left-align">{{ job.company }}</div>
+            <div class="right-align">{{ job.dates }}</div>
+            <div class="clear"></div>
+
+            <div class="left-align" style="font-weight: normal; font-style: italic;">{{ job.role }}</div>
+            <div class="right-align">{{ job.location }}</div>
+            <div class="clear"></div>
+
+            <ul>
+                {% for achievement in job.achievements %}
+                <li>{{ achievement }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- TECHNICAL PROJECTS -->
+    <div class="section">
+        <h2>Technical Projects</h2>
+        {% for project in profile.technical_projects %}
+        <div>
+            <div class="left-align">{{ project.title }}</div>
+            <div class="right-align">{{ project.tech_stack | join(', ') }}</div>
+            <div class="clear"></div>
+            <ul>
+                {% for highlight in project.highlights %}
+                <li>{{ highlight }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- LEADERSHIP & AWARDS (Mapped from Honors) -->
+    {% if profile.honors_and_awards %}
+    <div class="section">
+        <h2>Leadership & Awards</h2>
+        {% for award in profile.honors_and_awards %}
+        <div>
+            <strong>{{ award.award }}</strong> - {{ award.project }}: {{ award.description }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</body>
+</html>

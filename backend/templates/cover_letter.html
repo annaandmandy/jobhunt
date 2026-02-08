@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cover Letter</title>
+    <style>
+        @page {
+            size: letter;
+            margin: 1in;
+        }
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .recipient {
+            margin-bottom: 20px;
+        }
+
+        .content {
+            margin-bottom: 20px;
+            white-space: pre-wrap;
+            /* Preserve line breaks from text area */
+        }
+
+        .closing {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>{{ profile.contact.name }}</h1>
+        <div>{{ profile.contact.email }} | {{ profile.contact.phone }}</div>
+        <div>{{ profile.contact.linkedin }}</div>
+        <div>{{ profile.contact.github }}</div>
+    </div>
+
+    <div class="recipient">
+        {{ date }}<br /><br />
+        Hiring Manager<br />
+        {{ company_name }}<br />
+    </div>
+
+    <div class="content">
+        {{ cover_letter_content }}
+    </div>
+
+    <div class="closing">
+        Sincerely,<br /><br />
+        {{ profile.contact.name }}
+    </div>
+
+</body>
+
+</html>
