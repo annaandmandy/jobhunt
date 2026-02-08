@@ -54,9 +54,10 @@ class PDFGenerator:
         return self.generate_pdf("resume_markdown.html", context)
 
     def generate_cover_letter(self, profile_data: dict, cover_letter_content: str, company_name: str, date: str) -> BytesIO:
+        formatted_cover = cover_letter_content.replace("\r\n", "\n").replace("\n", "<br />\n")
         context = {
             "profile": profile_data,
-            "cover_letter_content": cover_letter_content,
+            "cover_letter_content": formatted_cover,
             "company_name": company_name,
             "date": date
         }

@@ -18,7 +18,7 @@
         }
 
         .header {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .contact-info {
@@ -32,8 +32,7 @@
 
         .content {
             margin-bottom: 20px;
-            white-space: pre-wrap;
-            /* Preserve line breaks from text area */
+            white-space: normal;
         }
 
         .closing {
@@ -47,18 +46,15 @@
     <div class="header">
         <h1>{{ profile.contact.name }}</h1>
         <div>{{ profile.contact.email }} | {{ profile.contact.phone }}</div>
-        <div>{{ profile.contact.linkedin }}</div>
-        <div>{{ profile.contact.github }}</div>
+        <div>{{ profile.contact.linkedin }} | {{ profile.contact.github }} | {{ profile.contact.website }}</div>
     </div>
 
     <div class="recipient">
         {{ date }}<br /><br />
-        Hiring Manager<br />
-        {{ company_name }}<br />
     </div>
 
     <div class="content">
-        {{ cover_letter_content }}
+        {{ cover_letter_content | safe }}
     </div>
 
     <div class="closing">

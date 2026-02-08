@@ -1,5 +1,5 @@
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 class Contact(BaseModel):
     name: str
@@ -37,8 +37,11 @@ class HonorAward(BaseModel):
 
 class Skills(BaseModel):
     languages: List[str]
-    frameworks: List[str]
-    cloud_tools: List[str]
+    ai_llm_specialization: List[str] = Field(default_factory=list)
+    backend_cloud: List[str] = Field(default_factory=list)
+    data_engineering_infra: List[str] = Field(default_factory=list)
+    frameworks: List[str] = Field(default_factory=list)
+    cloud_tools: List[str] = Field(default_factory=list)
 
 class MasterProfile(BaseModel):
     contact: Contact

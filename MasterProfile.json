@@ -143,30 +143,48 @@
             "description": "Visualized U.S. Herbaria data using Groq API for dynamic botanical descriptions and Looker Studio."
         }
     ],
-    "skills": {
+     "skills": {
         "languages": [
-            "Python",
-            "C++20",
-            "TypeScript",
-            "JavaScript",
-            "SQL"
+        "Python (Pandas, NumPy, PySpark)",
+        "C++20",
+        "TypeScript/JavaScript",
+        "SQL (PostgreSQL)",
+        "Bash Scripting",
+        "HTML/CSS",
+        "R",
+        "Java"
         ],
-        "frameworks": [
-            "FastAPI",
-            "React",
-            "Next.js",
-            "LangChain",
-            "LangGraph",
-            "PyTorch"
+        "ai_llm_specialization": [
+        "Agentic Workflows (LangGraph, LangChain)",
+        "RAG Architecture",
+        "LLM Evaluation (LangSmith)",
+        "Prompt Engineering & Tool Calling",
+        "Vector Databases (Pinecone, MongoDB Atlas)",
+        "Context & Memory Management"
         ],
-        "cloud_tools": [
-            "AWS (EC2, S3, Lambda)",
-            "Azure (Synapse, Functions)",
-            "Docker",
-            "Kafka",
-            "Redis",
-            "PostgreSQL",
-            "MongoDB"
+        "backend_cloud": [
+        "FastAPI",
+        "Node.js",
+        "Next.js",
+        "AWS (EC2, S3, Lambda, CloudFront)",
+        "Azure (Synapse, Functions, Data Factory)",
+        "Supabase",
+        "Docker",
+        "CI/CD (GitHub Actions)",
+        "Linux"
+        ],
+        "data_engineering_infra": [
+        "ETL Pipelines",
+        "Kafka (Event-driven Architecture)",
+        "Redis (Caching & Session Management)",
+        "Medallion Architecture",
+        "Data Modeling",
+        "Cloudflare Workers",
+        "Google Analytics 4",
+        "MS Clarity",
+        "PostHog",
+        "Power BI",
+        "Looker Studio"
         ]
     }
 }
