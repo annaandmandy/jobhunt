@@ -45,8 +45,8 @@ class PDFGenerator:
         return pdf_buffer
 
     def generate_resume_from_markdown(self, markdown_content: str, profile_data: dict) -> BytesIO:
-        # Convert Markdown to HTML
-        html_body = markdown.markdown(markdown_content)
+        # Convert Markdown to HTML with hard line breaks for tighter formatting.
+        html_body = markdown.markdown(markdown_content, extensions=["nl2br"])
         context = {
             "profile": profile_data,
             "body_content": html_body

@@ -21,11 +21,12 @@ llm = ChatOpenAI(model="gpt-4o")
 RESUME_PROMPT = """
 You are an expert technical resume writer. 
 Your goal is to tailor the user's Master Profile to the given Job Description.
-Produce a clean, ATS-friendly Markdown resume.
+Produce a clean, ATS-friendly Markdown resume that fits on ONE PAGE.
 
 **Guidelines:**
 1.  **Structure:**
-    *   **Header:** Name, Contact Info (Phone, Email, Location, LinkedIn, GitHub, Website).
+    *   **Do NOT include header or contact info.** Header is provided elsewhere.
+    *   **Summary (1 line):** Role focus + specialization.
     *   **Education:** Degree, University, Dates, GPA (opt).
     *   **Work Experience:** Professional roles (e.g., Internships, Full-time). Focus on scale, infrastructure, and impact.
     *   **Technical Projects:** Personal or academic projects. Focus on initiative, agentic workflows, and complex architecture.
@@ -38,9 +39,12 @@ Produce a clean, ATS-friendly Markdown resume.
     *   Do NOT invent facts. Only use data from the Master Profile.
     *   Ensure distinct separation between "Work Experience" and "Technical Projects".
 
-3.  **Format:**
-    *   Use Markdown headers (# for Name, ## for Sections, ### for Roles/Titles).
+3.  **Format (tight, one-page):**
+    *   Use Markdown headers (## for Sections, ### for Roles/Titles).
     *   Use bullet points for achievements.
+    *   Limit bullets: max 3 per role, max 2 per project.
+    *   Keep bullets short (1 line each, ~18 words).
+    *   Use compact spacing; no blank lines between bullets.
     *   Keep it to ONE PAGE length (be concise).
 
 **Job Description:**
@@ -54,18 +58,20 @@ Return ONLY the Markdown content of the new resume.
 """
 
 COVER_LETTER_PROMPT = """
-You are a professional career coach. Write a compelling cover letter for the user based on their profile and the job description.
+You are a professional career coach. Write a compelling, concise cover letter for the user based on their profile and the job description.
+Match this tone: clear, direct, human, and warm (not overly formal).
 
 **Guidelines:**
 1.  **Style:** Professional, enthusiastic, but not robotic.
 2.  **Structure:**
-    *   Header (matches resume).
-    *   Salutation (e.g., "Dear Hiring Manager," or specific if known).
+    *   Do NOT include header/contact info. Header is provided elsewhere.
+    *   Short salutation (use "Hello," unless a specific name is provided).
     *   **Hook:** State interest in the role and company specifically.
     *   **Body Paragraph 1 (Experience):** Connect specific requirements in the JD to the user's Work Experience (e.g., Finz, BU BIT Lab).
     *   **Body Paragraph 2 (Projects):** Connect "Technical Projects" (e.g., Multi-agent Novel Gen) to the role's needs (especially if AI/Agentic role). Uses specific tech stack details.
     *   **Closing:** Reiterate value and interest. sign-off.
 3.  **Connecting the dots:** explicitly link the user's past achievements to the company's problems/stack mentioned in the JD.
+4.  **Length:** ONE PAGE; 3 short paragraphs max, 4-6 sentences total.
 
 **Job Description:**
 {job_description}
@@ -74,7 +80,7 @@ You are a professional career coach. Write a compelling cover letter for the use
 {profile_json}
 
 **Output:**
-Return ONLY the text of the cover letter (no markdown formatting needed for the body, just plain text with paragraphs).
+Return ONLY the text of the cover letter (plain text with paragraphs).
 """
 
 # --- Nodes ---
