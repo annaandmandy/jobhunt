@@ -45,13 +45,13 @@ def _safe_json_loads(text: str) -> dict:
 # --- Prompts ---
 
 JD_STRATEGIST_PROMPT = """
-You are The JD Strategist (The Analyzer). Read the job description and infer the hidden requirements.
+You are the **JD Strategist**. Your goal is to reverse-engineer the Job Description to identify what the hiring manager truly values.
 
 **Tasks:**
-1) Determine the target persona the company wants (e.g., "Scrappy Startup Generalist", "Scale-focused Backend Expert").
-2) Extract hard skills and soft skills.
-3) Identify the core problem the role is meant to solve.
-4) Capture key keywords and signals for ATS.
+1) **Target Persona:** Identify the specific archetype (e.g., "Systems-Heavy Backend Engineer", "AI Orchestration Specialist", "Data Infrastructure Architect").
+2) **Pain Points:** What technical problems is the company trying to solve? (e.g., Scaling real-time data, LLM reliability, high-performance storage).
+3) **Keyword Taxonomy:** Extract Must-Have vs. Nice-to-Have skills. Prioritize tools like Spark, Kafka, or specific cloud providers (AWS/Azure).
+4) **Culture Signals:** Is this a fast-paced startup (emphasize "end-to-end delivery") or a large enterprise (emphasize "standards, documentation, and scalability")?
 
 **Job Description:**
 {job_description}
@@ -59,106 +59,67 @@ You are The JD Strategist (The Analyzer). Read the job description and infer the
 **Output (JSON only):**
 {{
   "persona": "",
-  "hard_skills": [],
-  "soft_skills": [],
-  "core_problem": "",
-  "keywords": []
+  "core_pain_points": [],
+  "must_have_skills": [],
+  "nice_to_have_skills": [],
+  "strategic_focus": "e.g., emphasize systems engineering over web dev"
 }}
 """
 
 EXPERIENCE_MATCHER_PROMPT = """
-You are The Experience Matcher (The Mapper). Map job requirements to the strongest evidence from the Master Profile.
+You are the **Experience Matcher**. You are a career strategist mapping a candidate's "Master Profile" to a specific "Job Description."
 
 **Rules:**
-- Be concise. Return only the information that should be used in writing.
-- Limit to 5-7 total requirements, highest impact only.
-- For each requirement, provide at most 2 evidence items.
-- Keep each evidence detail to one short sentence (<= 20 words).
-- Prioritize the most relevant 2-4 projects and 2-4 experience entries.
-- Use only facts from the Master Profile.
+1) **Strategic Selection:** Choose the most relevant 4-6 entries total (mix of work + projects).
+2) **Technical Mapping:** Map specific accomplishments to JD requirements.
+3) **Conciseness:** Keep each "reasoning" to one short sentence.
+4) **No Hallucinations:** Use ONLY the facts provided in the Master Profile.
 
-**Job Description:**
-{job_description}
-
-**Target Persona:**
-{target_persona_json}
-
-**Master Profile:**
-{profile_json}
+**Target Persona:** {target_persona_json}
+**Job Description:** {job_description}
+**Master Profile:** {profile_json}
 
 **Output (JSON only):**
 {{
-  "requirement_map": [
+  "selected_entries": [
     {{
-      "requirement": "",
-      "evidence": [
-        {{
-          "source": "experience|project|education",
-          "title": "",
-          "detail": ""
-        }}
-      ]
+      "id": "project_title_or_job_name",
+      "reasoning": "Why this matches a specific JD requirement",
+      "key_metrics_to_include": ["e.g., 20% accuracy gain", "30% token reduction"]
     }}
-  ],
-  "focus_projects": [],
-  "focus_experience": []
+  ]
 }}
 """
 
 GHOSTWRITER_RESUME_PROMPT = """
-You are an expert technical resume writer. 
-Your goal is to tailor the user's Master Profile to the given Job Description.
-Produce a clean, ATS-friendly Markdown resume that fits on ONE PAGE.
+You are an expert **Technical Resume Writer** for the US Silicon Valley market. Your goal is to generate a one-page Markdown resume.
 
-**Guidelines:**
-1.  **Structure:**
-    *   **Do NOT include header or contact info.** Header is provided elsewhere.
-    *   **Summary (2 line):** Role focus + specialization.
-    *   **Education:** Degree, University, Dates, GPA (opt).
-    *   **Work Experience:** Include ALL roles from the Master Profile. Focus on scale, infrastructure, and impact.
-    *   **Technical Projects:** Personal or academic projects. Focus on initiative, agentic workflows, and complex architecture.
-    *   **Skills:** Languages, Frameworks, Cloud/Tools.
-    *   **Honors & Awards:** (If relevant).
+**The Google XYZ Formula (Preferred):**
+When a metric exists in the Master Profile, use: "Accomplished [X] as measured by [Y], by doing [Z]."
+- *X (Action):* Start with a strong action verb (Architected, Engineered, Optimized).
+- *Y (Metric):* Use real metrics only if present in the profile.
+- *Z (How):* Mention specific technologies (LangGraph, C++20, Kafka, AWS).
+If no metric exists, omit [Y] and keep the bullet factual and concise.
 
-2.  **Content Tailoring:**
-    *   Highlight skills and experiences from the profile that match the Job Description.
-    *   Rephrase bullet points to emphasize impact and relevance to the JD keywords.
-    *   Use the Requirement Map to prioritize which experiences/projects become bullet points.
-    *   Each bullet should reflect a JD requirement or keyword where possible.
-    *   If the Reviewer Instructions call out missing skills, add them to Skills and weave into relevant bullets **only if they exist in the Master Profile** (including coursework or minor exposure).
-    *   Do NOT invent facts. Only use data from the Master Profile.
-    *   Ensure distinct separation between "Work Experience" and "Technical Projects".
+**Format Requirements:**
+1) **Do NOT include header/contact info.** Header is provided elsewhere.
+2) **Sections:** Use `## Summary`, `## Work Experience`, `## Technical Projects`, `## Skills`, `## Education`, `## Honors & Awards`.
+3) **Separation:** Strictly separate "Work Experience" from "Technical Projects".
+4) **Heading Format:** `### **Role at Company** <span>Dates</span>`
+5) **Location Line:** Put `*Location*` on the next line.
+6) **List Spacing:** Insert a blank line between the location line and the bullet list.
+7) **Bullets:** Use "-" for bullets. Max 3 bullets for work, 2 for projects. One line each (~18 words).
+8) **Coverage:** Include ALL roles from the Master Profile.
 
-3.  **Format (tight, one-page):**
-    *   Use Markdown headers (## for Sections, ### for Roles/Titles).
-    *   Use "-" for bullet points.
-    *   Insert a blank line between any date line and the bullet list.
-    *   Work/Project heading format:
-        ### **Role at Company** <span>Dates</span>
-        *Location*
-    *   Limit bullets: max 3 per role, max 2 per project.
-    *   Keep bullets short (1 line each, ~18 words).
-    *   Use compact spacing; no blank lines between bullets.
-    *   Keep it to ONE PAGE length (be concise).
-
-**Job Description:**
-{job_description}
-
-**Target Persona:**
-{target_persona_json}
+**Priority Instructions (from Reviewer):**
+{reviewer_instructions}
 
 **Requirement Map:**
 {requirement_map_json}
 
-**Reviewer Instructions (if any):**
-{reviewer_instructions}
+**Master Profile:** {profile_json}
 
-**Master Profile:**
-{profile_json}
-
-**Output:**
-Return ONLY the Markdown content of the new resume.
-Do NOT wrap the output in code fences.
+**Output:** Return ONLY Markdown.
 """
 
 GHOSTWRITER_COVER_LETTER_PROMPT = """
@@ -199,34 +160,27 @@ Do NOT wrap the output in code fences.
 """
 
 QUALITY_CRITIC_PROMPT = """
-You are The Quality Critic (The Reviewer). Act as both an HR manager and an ATS scanner.
+You are the **Quality Critic**. Grade this resume based on US Technical Recruitment standards.
 
-**Tasks:**
-1) Check the resume is ONE PAGE length (concise, not overstuffed).
-2) Ensure "Work Experience" and "Technical Projects" sections are clearly separated.
-3) Score the match quality to the JD (0-100).
-4) Provide specific revision instructions if score <= 85.
+**Checklist:**
+1. **One-Page Rule:** Is the content concise enough to fit on one physical page?
+2. **XYZ Formula:** Does every bullet point contain a metric and a specific technology?
+3. **Hallucination Check:** Did the writer add any skills (e.g., "Kubernetes") that are NOT in the Master Profile?.
+4. **Visual Check:** Are the dates right-aligned? Is the tech stack line distinct? Are there any typos like "PriceSentiment"?
 
-**Job Description:**
-{job_description}
+**Scoring:**
+- Match Score (0-100).
+- If score < 80, you MUST provide "Revision Instructions" to the Ghostwriter.
 
-**Target Persona:**
-{target_persona_json}
-
-**Requirement Map:**
-{requirement_map_json}
-
-**Resume Draft:**
-{resume_markdown}
-
-**Cover Letter Draft:**
-{cover_letter_text}
+**Draft Resume:** {resume_markdown}
+**Target Persona:** {target_persona_json}
+**Profile json:** {profile_json}
 
 **Output (JSON only):**
 {{
   "match_score": 0,
-  "issues": [],
-  "revision_instructions": ""
+  "issues_found": [],
+  "revision_instructions": "e.g., 'The Finz intern bullets are too long. Shorten and add a metric for the Kafka pipeline.'"
 }}
 """
 
@@ -290,6 +244,7 @@ def review_quality(state: AgentState):
         "job_description": state["job_description"],
         "target_persona_json": json.dumps(state.get("target_persona", {}), indent=2),
         "requirement_map_json": json.dumps(state.get("requirement_map", {}), indent=2),
+        "profile_json": json.dumps(state["profile"], indent=2),
         "resume_markdown": state.get("resume_markdown", ""),
         "cover_letter_text": state.get("cover_letter_text", ""),
     })

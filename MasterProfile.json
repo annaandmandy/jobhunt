@@ -46,7 +46,8 @@
             "achievements": [
                 "Architected a context-aware memory system using LangGraph that combines short-term conversational history with vector-based retrieval to prevent context drift in long-running AI sessions.",
                 "Developed an agentic query routing framework to classify user intent and orchestrate specialized prompt chains, integrating external tool-calling for real-time data grounding.",
-                "Designed a high-granularity MongoDB logging schema to track latency, token usage, and interaction signals, facilitating systematic LLM evaluation and performance tuning."
+                "Designed a high-granularity MongoDB logging schema to track latency, token usage, and interaction signals, facilitating systematic LLM evaluation and performance tuning.",
+                "Utilized LangSmith for end-to-end tracing of multi-agent workflows, and integrated Claude API, Gemini API, OpenAI API and OpenRouter API(Grok and Perplexity)."
             ]
         },
         {
@@ -104,7 +105,7 @@
             ]
         },
         {
-            "title": "NVIDIA Stock PriceSentiment Data Pipeline",
+            "title": "NVIDIA Stock Price Sentiment Data Pipeline",
             "category": "Data Engineering",
             "tech_stack": [
                 "Azure Synapse",
@@ -129,7 +130,23 @@
                 "Achieved a 65.1% improvement in R² accuracy (8.3% to 73.4%) for GPU component demand forecasting at NTUST AI Lab.",
                 "Engineered a rolling-window adaptive model combining time-series analysis with machine learning."
             ]
-        }
+        },{
+    "title": "AI Career Suite (Process Improvement & AI Automation)",
+    "tech_stack": [
+        "LangGraph",
+        "FastAPI",
+        "React",
+        "TypeScript",
+        "Chrome Extension API",
+        "PostgreSQL"
+    ],
+    "highlights": [
+        "Developed a process improvement tool using a multi-agent LangGraph architecture to automate the data-heavy task of document tailoring, reducing manual processing time by 90%.",
+        "Architected a recursive feedback loop between a Generator and Critic agent to ensure data quality and technical alignment with 95% accuracy.",
+        "Implemented an end-to-end data pipeline from JD extraction via Chrome Extension to automated PDF generation, establishing a scalable framework for AI-driven text processing.",
+        "Optimized system performance by implementing stateful memory management, ensuring consistency across long-running multi-turn agent interactions."
+    ]
+}
     ],
     "honors_and_awards": [
         {
@@ -171,7 +188,9 @@
         "Supabase",
         "Docker",
         "CI/CD (GitHub Actions)",
-        "Linux"
+        "Linux",
+        "Google Workspace",
+        "Microsoft 365"
         ],
         "data_engineering_infra": [
         "ETL Pipelines",
