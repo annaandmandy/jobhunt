@@ -133,6 +133,9 @@ Produce a clean, ATS-friendly Markdown resume that fits on ONE PAGE.
     *   Use Markdown headers (## for Sections, ### for Roles/Titles).
     *   Use "-" for bullet points.
     *   Insert a blank line between any date line and the bullet list.
+    *   Work/Project heading format:
+        ### **Role at Company** <span>Dates</span>
+        *Location*
     *   Limit bullets: max 3 per role, max 2 per project.
     *   Keep bullets short (1 line each, ~18 words).
     *   Use compact spacing; no blank lines between bullets.
